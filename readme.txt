@@ -1,6 +1,6 @@
 === AEGIS Coinbase for WooCommerce ===
 Contributors: gambitmutant
-Tags: woocommerce, coinbase, usdc, bitcoin, ethereum, dogecoin, crypto, payment gateway
+Tags: woocommerce, coinbase, usdc, usdt, bitcoin, ethereum, dogecoin, crypto, payment gateway
 Requires at least: 6.0
 Tested up to: 6.9
 Requires PHP: 7.4
@@ -21,7 +21,7 @@ Unified payment gateway that supports two mutually exclusive modes:
 * Creates a unique receive address per order
 * Shows exact amount, address and QR code
 * Polls for payment (AJAX + WP-Cron)
-* Supports USDC (Base), Bitcoin, Ethereum, Dogecoin
+* Supports USDC (Base), USDT (Ethereum), Bitcoin, Ethereum, Dogecoin
 
 **Business mode**
 * Uses the Coinbase Business Checkouts API
@@ -73,3 +73,4 @@ Tested and written to avoid common conflicts with popular WooCommerce extensions
 * Disclosed 0.5% development fee.
 * Author credentials encrypted in the plugin.
 * Broader PHP / WordPress / WooCommerce compatibility and security hardening.
+* Added USDT (Ethereum) support in Personal mode.
