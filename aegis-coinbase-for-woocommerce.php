@@ -1,0 +1,106 @@
+<?php
+/**
+ * Plugin Name: AEGIS Coinbase for WooCommerce
+ * Plugin URI:  https://github.com/GambitMutant/aegis-coinbase-for-woocommerce
+ * Description: Accept cryptocurrency payments via personal Coinbase account (unique addresses + QR) or Coinbase Business Checkouts. Mode selector (only one active at a time). Collects a disclosed 0.5% fee. Donations support The AEGIS Alliance project funding (secondary: business operations). HPOS and Checkout Blocks compatible.
+ * Version:     1.0.0
+ * Author:      Gambit Mutant
+ * Author URI:  https://github.com/GambitMutant
+ * Requires at least: 6.0
+ * Requires PHP: 7.4
+ * Tested up to: 6.9
+ * WC requires at least: 8.0
+ * WC tested up to: 12.1
+ * License:     GPL-2.0-or-later
+ * Text Domain: aegis-coinbase
+ *
+ * @package AEGISCoinbaseForWooCommerce
+ */
+
+declare(strict_types=1);
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
+define( 'ACW_VERSION', '1.0.0' );
+define( 'ACW_PLUGIN_FILE', __FILE__ );
+define( 'ACW_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
+define( 'ACW_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
+
+/**
+ * Declare HPOS and Blocks compatibility.
+ */
+add_action(
+	'before_woocommerce_init',
+	static function (): void {
+		if ( class_exists( \Automattic\WooCommerce\Utilities\FeaturesUtil::class ) ) {
+			\Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility( 'custom_order_tables', __FILE__, true );
+			\Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility( 'cart_checkout_blocks', __FILE__, true );
+		}
+	}
+);
+
+/**
+ * Load plugin after WooCommerce.
+ */
+add_action(
+	'plugins_loaded',
+	static function (): void {
+		if ( ! class_exists( 'WooCommerce' ) ) {
+			add_action(
+				'admin_notices',
+				static function (): void {
+					echo '<div class="error"><p>' . esc_html__( 'AEGIS Coinbase for WooCommerce requires WooCommerce to be active.', 'aegis-coinbase' ) . '</p></div>';
+				}
+			);
+			return;
+		}
+
+		require_once ACW_PLUGIN_DIR . 'includes/class-acw-constants.php';
+		require_once ACW_PLUGIN_DIR . 'includes/class-acw-jwt-personal.php';
+		require_once ACW_PLUGIN_DIR . 'includes/class-acw-jwt-business.php';
+		require_once ACW_PLUGIN_DIR . 'includes/class-acw-api-personal.php';
+		require_once ACW_PLUGIN_DIR . 'includes/class-acw-api-business.php';
+		require_once ACW_PLUGIN_DIR . 'includes/class-acw-fee-collector.php';
+		require_once ACW_PLUGIN_DIR . 'includes/class-wc-gateway-aegis-coinbase.php';
+		require_once ACW_PLUGIN_DIR . 'includes/class-acw-webhook-handler.php';
+		require_once ACW_PLUGIN_DIR . 'includes/class-acw-cron.php';
+
+		add_filter(
+			'woocommerce_payment_gateways',
+			static function ( array $gateways ): array {
+				$gateways[] = 'WC_Gateway_AEGIS_Coinbase';
+				return $gateways;
+			}
+		);
+
+		new ACW_Webhook_Handler();
+		new ACW_Cron();
+
+		add_action( 'wp_enqueue_scripts', static function (): void {
+			if ( is_checkout() || is_order_received_page() || is_wc_endpoint_url( 'order-pay' ) ) {
+				wp_enqueue_style( 'acw-style', ACW_PLUGIN_URL . 'assets/css/style.css', array(), ACW_VERSION );
+				wp_enqueue_script( 'acw-payment', ACW_PLUGIN_URL . 'assets/js/payment.js', array( 'jquery' ), ACW_VERSION, true );
+			}
+		} );
+	}
+);
+
+/**
+ * Blocks support.
+ */
+add_action(
+	'woocommerce_blocks_loaded',
+	static function (): void {
+		if ( class_exists( \Automattic\WooCommerce\Blocks\Payments\Integrations\AbstractPaymentMethodType::class ) ) {
+			require_once ACW_PLUGIN_DIR . 'includes/class-acw-blocks-support.php';
+			add_action(
+				'woocommerce_blocks_payment_method_type_registration',
+				static function ( \Automattic\WooCommerce\Blocks\Payments\PaymentMethodRegistry $registry ): void {
+					$registry->register( new ACW_Blocks_Support() );
+				}
+			);
+		}
+	}
+);
