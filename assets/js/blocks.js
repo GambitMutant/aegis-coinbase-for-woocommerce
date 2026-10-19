@@ -17,7 +17,7 @@
 		}
 
 		const cryptos = settings.cryptos || [ 'USDC' ];
-		const networkMap = { USDC: 'Base', BTC: 'Bitcoin', ETH: 'Ethereum', DOGE: 'Dogecoin' };
+		const networkMap = { USDC: 'Base', USDT: 'Ethereum', BTC: 'Bitcoin', ETH: 'Ethereum', DOGE: 'Dogecoin' };
 
 		return createElement( 'div', null,
 			createElement( 'p', null, decodeEntities( settings.description || '' ) ),

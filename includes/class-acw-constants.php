@@ -50,6 +50,12 @@ class ACW_Constants {
 			'decimals' => 8,
 			'stable'   => false,
 		),
+		'USDT' => array(
+			'name'     => 'USDT',
+			'network'  => 'ethereum',
+			'decimals' => 6,
+			'stable'   => true,
+		),
 	);
 
 	public const META_CHECKOUT_ID  = '_acw_checkout_id';
