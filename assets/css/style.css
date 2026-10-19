@@ -6,7 +6,19 @@
 	border-radius: 8px;
 	background: #fafafa;
 	text-align: center;
+	box-sizing: border-box;
 }
+
+/* WP Bakery / page-builder container compatibility */
+.vc_row .cfp-payment-box,
+.vc_column .cfp-payment-box,
+.wpb_wrapper .cfp-payment-box {
+	max-width: 100%;
+	width: 100%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
 .cfp-payment-box h3 {
 	margin-top: 0;
 }
@@ -18,6 +30,8 @@
 	margin: 1em 0;
 	border: 1px solid #eee;
 	border-radius: 4px;
+	max-width: 100%;
+	height: auto;
 }
 .cfp-address code {
 	display: inline-block;

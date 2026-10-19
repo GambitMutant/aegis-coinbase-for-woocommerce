@@ -2,7 +2,7 @@
 /**
  * Plugin Name: AEGIS Coinbase for WooCommerce
  * Plugin URI:  https://github.com/GambitMutant/aegis-coinbase-for-woocommerce
- * Description: Accept cryptocurrency payments via personal Coinbase account (unique addresses + QR) or Coinbase Business Checkouts. Mode selector (only one active at a time). Collects a disclosed 0.5% fee. Donations support The AEGIS Alliance project funding (secondary: business operations). HPOS and Checkout Blocks compatible.
+ * Description: Accept cryptocurrency payments via personal Coinbase account (unique addresses + QR) or Coinbase Business Checkouts. Mode selector (only one active at a time). Collects a disclosed 0.5% fee. Donations support The AEGIS Alliance project funding (secondary: business operations). HPOS, Checkout Blocks, and WP Bakery compatible.
  * Version:     1.0.0
  * Author:      Gambit Mutant
  * Author URI:  https://github.com/GambitMutant
@@ -79,11 +79,22 @@ add_action(
 		new ACW_Cron();
 
 		add_action( 'wp_enqueue_scripts', static function (): void {
-			if ( is_checkout() || is_order_received_page() || is_wc_endpoint_url( 'order-pay' ) ) {
+			$load = is_checkout() || is_order_received_page() || is_wc_endpoint_url( 'order-pay' );
+
+			// Also load when WP Bakery is rendering a page that contains checkout shortcodes
+			// or when the frontend editor is active.
+			if ( ! $load && ( defined( 'WPB_VC_VERSION' ) || function_exists( 'vc_is_frontend_editor' ) ) ) {
+				global $post;
+				if ( $post && ( has_shortcode( $post->post_content, 'woocommerce_checkout' ) || has_shortcode( $post->post_content, 'woocommerce_cart' ) ) ) {
+					$load = true;
+				}
+			}
+
+			if ( $load ) {
 				wp_enqueue_style( 'acw-style', ACW_PLUGIN_URL . 'assets/css/style.css', array(), ACW_VERSION );
 				wp_enqueue_script( 'acw-payment', ACW_PLUGIN_URL . 'assets/js/payment.js', array( 'jquery' ), ACW_VERSION, true );
 			}
-		} );
+		}, 20 );
 	}
 );
 
