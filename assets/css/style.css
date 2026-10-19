@@ -1,0 +1,57 @@
+.cfp-payment-box {
+	max-width: 480px;
+	margin: 2em auto;
+	padding: 1.5em;
+	border: 1px solid #ddd;
+	border-radius: 8px;
+	background: #fafafa;
+	text-align: center;
+}
+.cfp-payment-box h3 {
+	margin-top: 0;
+}
+.cfp-amount {
+	font-size: 1.4em;
+	margin: 0.5em 0;
+}
+.cfp-qr img {
+	margin: 1em 0;
+	border: 1px solid #eee;
+	border-radius: 4px;
+}
+.cfp-address code {
+	display: inline-block;
+	word-break: break-all;
+	background: #fff;
+	padding: 0.4em 0.6em;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	font-size: 0.9em;
+}
+.cfp-copy {
+	margin-left: 0.5em;
+}
+.cfp-network-notice {
+	background: #fff3cd;
+	border: 1px solid #ffc107;
+	border-left: 4px solid #b32d2e;
+	color: #856404;
+	padding: 0.8em 1em;
+	margin: 1em 0;
+	border-radius: 4px;
+	text-align: left;
+	font-size: 0.95em;
+	line-height: 1.4;
+}
+.cfp-network-notice strong {
+	color: #b32d2e;
+}
+.cfp-warning {
+	color: #b32d2e;
+	font-size: 0.9em;
+	font-weight: 500;
+}
+.cfp-timer, .cfp-status {
+	margin-top: 1em;
+	font-weight: 500;
+}
