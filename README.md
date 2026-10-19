@@ -15,7 +15,7 @@ Only one mode is active at a time. The plugin is HPOS and Checkout Blocks compat
 - Creates a unique receive address for every order
 - Displays the exact amount, address, and QR code
 - Polls for payment (AJAX on the payment page + WP-Cron)
-- Supports USDC (Base), Bitcoin, Ethereum, and Dogecoin
+- Supports USDC (Base), USDT (Ethereum), Bitcoin, Ethereum, and Dogecoin
 
 ### Business mode
 - Uses the Coinbase Business Checkouts API
@@ -63,7 +63,7 @@ A disclosed **0.5% fee** is collected on successful transactions to support cont
 1. Create a CDP API key (Ed25519) in the Coinbase Developer Platform.
 2. Grant **Receive** and **View** permissions (add **Send** if you want the automatic 0.5% fee transfer to work).
 3. Paste the full API key name and the base64 Ed25519 secret into the plugin settings.
-4. Select which cryptocurrencies to offer.
+4. Select which cryptocurrencies to offer (USDC, USDT, BTC, ETH, DOGE).
 5. Test the connection.
 
 ### Business mode
