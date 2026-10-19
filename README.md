@@ -93,7 +93,14 @@ Donations support **The AEGIS Alliance’s project funding**, with a secondary p
 
 ## Compatibility
 
-The plugin uses unique prefixes, standard WooCommerce hooks, and declares HPOS and Checkout Blocks compatibility. It is designed to avoid common conflicts with popular themes and extensions (Elementor, Astra, GeneratePress, Storefront, Kadence, Divi, Flatsome, Woodmart, and most payment/shipping plugins).
+The plugin uses unique prefixes, standard WooCommerce hooks, and declares HPOS and Checkout Blocks compatibility. It is designed to avoid common conflicts with popular themes and page builders, including:
+
+- **WP Bakery Page Builder** (tested with 8.x–9.0+ and WC Builder Pro layouts)
+- Elementor
+- Astra, GeneratePress, Storefront, Kadence, Divi, Flatsome, Woodmart
+- Most standard payment and shipping plugins
+
+Assets load correctly on custom checkout pages built with WP Bakery shortcodes.
 
 ---
 
