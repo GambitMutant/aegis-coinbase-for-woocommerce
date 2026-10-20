@@ -83,10 +83,13 @@ Donations support **The AEGIS Alliance’s project funding**, with a secondary p
 - **AEGIS Shop:** https://shop.theaegisalliance.com
 - **PayPal / Venmo / Zelle:** `aegisalliance`
 - **Cash App:** `$aegisalliance`
+
+**Crypto accepted at Coinbase:**
+
 - **USDC:** `0x39C7e115C4184f2E646D44E3681A87a22a93341B`
-- **BTC:** `0x876dA7d647C37FB7A8E94Fa287FefeB192dd49fc`
-- **DOGE:** `0x94ef8226B0409f382CAb78D2695FD3d7384f6bd6`
+- **BTC:** `3PCJwFfVytUCW2mfgUgKbjWmqsYvTzgCH1`
 - **ETH:** `0xcD8B620962e9ff4a098c4134f1C82fDf96236F87`
+- **DOGE:** `DAo22guf8pmNcF1V7FvuqrXTgy2khuPysB`
 - **USDT:** `0x4aF2eE05A313c8a8dd53EdA87DDA69F3E375c3B5`
 
 ---

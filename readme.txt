@@ -4,7 +4,7 @@ Tags: woocommerce, coinbase, usdc, usdt, bitcoin, ethereum, dogecoin, crypto, pa
 Requires at least: 6.0
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Author: Gambit Mutant
@@ -38,10 +38,11 @@ Donations support The AEGIS Alliance’s project funding, with a secondary purpo
 * Website: [AEGIS News](https://theaegisalliance.com) · [AEGIS Shop](https://shop.theaegisalliance.com)
 * PayPal / Venmo / Zelle: `aegisalliance`
 * Cash App: `$aegisalliance`
+* Crypto accepted at Coinbase:
 * USDC: `0x39C7e115C4184f2E646D44E3681A87a22a93341B`
-* BTC: `0x876dA7d647C37FB7A8E94Fa287FefeB192dd49fc`
-* DOGE: `0x94ef8226B0409f382CAb78D2695FD3d7384f6bd6`
+* BTC: `3PCJwFfVytUCW2mfgUgKbjWmqsYvTzgCH1`
 * ETH: `0xcD8B620962e9ff4a098c4134f1C82fDf96236F87`
+* DOGE: `DAo22guf8pmNcF1V7FvuqrXTgy2khuPysB`
 * USDT: `0x4aF2eE05A313c8a8dd53EdA87DDA69F3E375c3B5`
 
 **Compatibility**
@@ -65,6 +66,9 @@ Tested and written to avoid common conflicts with popular WooCommerce extensions
 6. Save.
 
 == Changelog ==
+
+= 1.0.1 =
+* Updated the Coinbase donation addresses. Bitcoin is `3PCJwFfVytUCW2mfgUgKbjWmqsYvTzgCH1`. Dogecoin is `DAo22guf8pmNcF1V7FvuqrXTgy2khuPysB`.
 
 = 1.0.0 =
 * Initial combined release of Personal and Business Coinbase support.
