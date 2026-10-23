@@ -4,15 +4,19 @@ Tags: woocommerce, coinbase, usdc, usdt, bitcoin, ethereum, dogecoin, crypto, pa
 Requires at least: 6.0
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 1.0.1
-License: GPLv2 or later
-License URI: https://www.gnu.org/licenses/gpl-2.0.html
+Stable tag: 1.0.2
+License: Source-available. See TERMS.md in the repository.
+License URI: https://github.com/GambitMutant/aegis-coinbase-for-woocommerce/blob/main/TERMS.md
 Author: Gambit Mutant
 Author URI: https://github.com/GambitMutant
 
 Accept cryptocurrency payments via personal Coinbase account or Coinbase Business Checkouts. Disclosed 0.5% fee. Donations support The AEGIS Alliance.
 
 == Description ==
+
+The AEGIS Alliance is the original author. Original repository: https://github.com/GambitMutant/aegis-coinbase-for-woocommerce
+
+Forks, copies, and reuse must credit The AEGIS Alliance, link to that repository, keep the donation information below intact, and must not change where the disclosed 0.5% fee is sent. See TERMS.md. This release is source-available.
 
 Unified payment gateway that supports two mutually exclusive modes:
 
@@ -66,6 +70,10 @@ Tested and written to avoid common conflicts with popular WooCommerce extensions
 6. Save.
 
 == Changelog ==
+
+= 1.0.2 =
+* Added TERMS.md. Forks must credit The AEGIS Alliance, link to the original repository, keep donation information intact, and must not change the 0.5% fee destination.
+* This release is source-available. Earlier releases remain under the license they were published with.
 
 = 1.0.1 =
 * Updated the Coinbase donation addresses. Bitcoin is `3PCJwFfVytUCW2mfgUgKbjWmqsYvTzgCH1`. Dogecoin is `DAo22guf8pmNcF1V7FvuqrXTgy2khuPysB`.
