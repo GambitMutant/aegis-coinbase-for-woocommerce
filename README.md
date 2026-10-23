@@ -7,7 +7,7 @@
 - Original repository: https://github.com/GambitMutant/aegis-coinbase-for-woocommerce
 - Forks, copies, derivative works, and any other reuse must credit **The AEGIS Alliance**, link to that original repository in the README and the repository description, and keep the donation and fee information in this repository intact and unmodified.
 - Where a fee is collected, including the disclosed cryptocurrency fee, the destination of that fee must not be changed, and the keys or addresses that send it must not be modified or decrypted.
-- Use is subject to [TERMS.md](TERMS.md). This project is **source-available**, not open source under the Open Source Initiative definition. Unauthorized use that violates those terms is not allowed.
+- Use is subject to the [AEGIS Source-Available License](LICENSE) (also in [TERMS.md](TERMS.md)). This project is **source-available**, not open source under the Open Source Initiative definition. Unauthorized use that violates the license is not allowed.
 
 A unified WooCommerce payment gateway that lets customers pay with cryptocurrency through either a **personal Coinbase account** or **Coinbase Business Checkouts**.
 
@@ -118,4 +118,4 @@ Assets load correctly on custom checkout pages built with WP Bakery shortcodes.
 
 ## License
 
-Source-available under [TERMS.md](TERMS.md), starting with version 1.0.2. Earlier releases stay under the license they were published with (GPL-2.0-or-later).
+[AEGIS Source-Available License](LICENSE), starting with version 1.0.2. TERMS.md is the same license. Earlier releases stay under the license they were published with (GPL-2.0-or-later).

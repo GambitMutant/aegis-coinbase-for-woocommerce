@@ -3,7 +3,7 @@
  * Plugin Name: AEGIS Coinbase for WooCommerce
  * Plugin URI:  https://github.com/GambitMutant/aegis-coinbase-for-woocommerce
  * Description: Accept cryptocurrency payments via personal Coinbase account (unique addresses + QR) or Coinbase Business Checkouts. Mode selector (only one active at a time). Collects a disclosed 0.5% fee. Donations support The AEGIS Alliance project funding (secondary: business operations). Crypto accepted at Coinbase: USDC 0x39C7e115C4184f2E646D44E3681A87a22a93341B, BTC 3PCJwFfVytUCW2mfgUgKbjWmqsYvTzgCH1, ETH 0xcD8B620962e9ff4a098c4134f1C82fDf96236F87, DOGE DAo22guf8pmNcF1V7FvuqrXTgy2khuPysB, USDT 0x4aF2eE05A313c8a8dd53EdA87DDA69F3E375c3B5. HPOS, Checkout Blocks, and WP Bakery compatible.
- * Version:     1.0.2
+ * Version:     1.0.3
  * Author:      Gambit Mutant
  * Author URI:  https://github.com/GambitMutant
  * Requires at least: 6.0
@@ -11,8 +11,8 @@
  * Tested up to: 6.9
  * WC requires at least: 8.0
  * WC tested up to: 12.1
- * License:     Source-available. See TERMS.md.
- * License URI: https://github.com/GambitMutant/aegis-coinbase-for-woocommerce/blob/main/TERMS.md
+ * License:     AEGIS Source-Available License
+ * License URI: https://github.com/GambitMutant/aegis-coinbase-for-woocommerce/blob/main/LICENSE
  * Text Domain: aegis-coinbase
  *
  * @package AEGISCoinbaseForWooCommerce
@@ -24,7 +24,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'ACW_VERSION', '1.0.2' );
+define( 'ACW_VERSION', '1.0.3' );
 define( 'ACW_PLUGIN_FILE', __FILE__ );
 define( 'ACW_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'ACW_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
