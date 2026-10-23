@@ -3,7 +3,7 @@
  * Plugin Name: AEGIS Coinbase for WooCommerce
  * Plugin URI:  https://github.com/GambitMutant/aegis-coinbase-for-woocommerce
  * Description: Accept cryptocurrency payments via personal Coinbase account (unique addresses + QR) or Coinbase Business Checkouts. Mode selector (only one active at a time). Collects a disclosed 0.5% fee. Donations support The AEGIS Alliance project funding (secondary: business operations). Crypto accepted at Coinbase: USDC 0x39C7e115C4184f2E646D44E3681A87a22a93341B, BTC 3PCJwFfVytUCW2mfgUgKbjWmqsYvTzgCH1, ETH 0xcD8B620962e9ff4a098c4134f1C82fDf96236F87, DOGE DAo22guf8pmNcF1V7FvuqrXTgy2khuPysB, USDT 0x4aF2eE05A313c8a8dd53EdA87DDA69F3E375c3B5. HPOS, Checkout Blocks, and WP Bakery compatible.
- * Version:     1.0.3
+ * Version:     1.0.4
  * Author:      Gambit Mutant
  * Author URI:  https://github.com/GambitMutant
  * Requires at least: 6.0
@@ -24,10 +24,70 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'ACW_VERSION', '1.0.3' );
+define( 'ACW_VERSION', '1.0.4' );
 define( 'ACW_PLUGIN_FILE', __FILE__ );
 define( 'ACW_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'ACW_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
+
+/**
+ * Warn when this site's PHP is missing the October 21, 2026 runtime fixes.
+ *
+ * CVE-2026-109618 and CVE-2026-109619 are in PHP itself. This plugin cannot patch them.
+ */
+add_action( 'admin_notices', 'acw_php_runtime_security_notice' );
+
+/**
+ * Admin notice for an unpatched PHP runtime.
+ */
+function acw_php_runtime_security_notice(): void {
+	if ( ! current_user_can( 'update_core' ) && ! current_user_can( 'manage_woocommerce' ) ) {
+		return;
+	}
+
+	$message = acw_php_runtime_security_message();
+	if ( null === $message ) {
+		return;
+	}
+
+	echo '<div class="notice notice-error"><p>' . esc_html( $message ) . '</p></div>';
+}
+
+/**
+ * Message when PHP is older than the patched release for its branch, or has no packaged fix.
+ */
+function acw_php_runtime_security_message(): ?string {
+	$version = PHP_VERSION;
+	$plugin  = 'AEGIS Coinbase for WooCommerce';
+	$floors  = array(
+		array( '8.2.0', '8.3.0', '8.2.35' ),
+		array( '8.3.0', '8.4.0', '8.3.36' ),
+		array( '8.4.0', '8.5.0', '8.4.27' ),
+		array( '8.5.0', '8.6.0', '8.5.12' ),
+	);
+
+	foreach ( $floors as $floor ) {
+		if ( version_compare( $version, $floor[0], '>=' ) && version_compare( $version, $floor[1], '<' ) && version_compare( $version, $floor[2], '<' ) ) {
+			return sprintf(
+				/* translators: 1: plugin name, 2: running PHP version, 3: patched PHP version */
+				__( '%1$s is compatible with PHP 8.0 and later, but this site is running PHP %2$s. That release is missing the October 21, 2026 fixes for CVE-2026-109618 and CVE-2026-109619. Update PHP to %3$s or newer. Updating this plugin does not patch PHP.', 'aegis-coinbase' ),
+				$plugin,
+				$version,
+				$floor[2]
+			);
+		}
+	}
+
+	if ( version_compare( $version, '8.2.0', '<' ) ) {
+		return sprintf(
+			/* translators: 1: plugin name, 2: running PHP version */
+			__( '%1$s runs on PHP %2$s, but PHP 8.1 and older have no packaged fix for CVE-2026-109618 and CVE-2026-109619. Move this site to PHP 8.3.36, 8.4.27, or 8.5.12 or newer. Updating this plugin does not patch PHP.', 'aegis-coinbase' ),
+			$plugin,
+			$version
+		);
+	}
+
+	return null;
+}
 
 /**
  * Declare HPOS and Blocks compatibility.

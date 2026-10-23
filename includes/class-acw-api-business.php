@@ -34,7 +34,8 @@ class ACW_API_Business {
 	 * @return array{0:bool,1:mixed}
 	 */
 	public static function send_request( string $path, array $params = array(), string $method = 'GET' ): array {
-		self::log( "Coinbase {$method} {$path}: " . wp_json_encode( $params ) );
+		$encoded = wp_json_encode( $params );
+		self::log( "Coinbase {$method} {$path}: " . ( is_string( $encoded ) ? $encoded : '' ) );
 
 		try {
 			$jwt   = new ACW_JWT_Business( self::$cdp_key_name, self::$cdp_private_key );

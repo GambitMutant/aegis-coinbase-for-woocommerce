@@ -42,7 +42,8 @@ A disclosed **0.5% fee** is collected on successful transactions to support cont
 
 ## Requirements
 
-- PHP 7.4+ (works on 8.0–8.4+; the `sodium` extension is required for Personal mode)
+- PHP 7.4 or newer. Compatible with PHP 8.0, 8.1, 8.2, 8.3, 8.4, and 8.5. Personal mode needs the `sodium` extension.
+- The October 21, 2026 PHP flaws, CVE-2026-109618 and CVE-2026-109619, are in the PHP runtime. Safe releases are PHP 8.2.35, 8.3.36, 8.4.27, and 8.5.12 or newer. PHP 8.4.26 is not safe. PHP 8.0 and 8.1 have no packaged fix. Updating this plugin does not patch PHP. wp-admin shows a warning when the server is still unpatched.
 - WordPress 6.0+
 - WooCommerce 8.0+ (tested through 12.1+)
 - CDP API keys with the correct scopes

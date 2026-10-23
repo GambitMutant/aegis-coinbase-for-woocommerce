@@ -30,7 +30,7 @@ class ACW_JWT_Business {
 	public function generate_token( string $method, string $path ): string {
 		$private_key = openssl_pkey_get_private( $this->private_key );
 		if ( ! $private_key ) {
-			throw new Exception( 'Invalid CDP private key: ' . openssl_error_string() );
+			throw new Exception( 'Invalid CDP private key: ' . acw_openssl_error() );
 		}
 
 		$now   = time();
@@ -59,7 +59,7 @@ class ACW_JWT_Business {
 		$signature = '';
 		$ok        = openssl_sign( $signing_input, $signature, $private_key, OPENSSL_ALGO_SHA256 );
 		if ( ! $ok ) {
-			throw new Exception( 'Failed to sign JWT: ' . openssl_error_string() );
+			throw new Exception( 'Failed to sign JWT: ' . acw_openssl_error() );
 		}
 
 		$raw_sig = $this->der_to_raw( $signature );
@@ -103,4 +103,12 @@ class ACW_JWT_Business {
 
 		return $r . $s;
 	}
+}
+
+/**
+ * OpenSSL error text without concatenating false, which PHP 8.1 and later deprecate.
+ */
+function acw_openssl_error(): string {
+	$error = openssl_error_string();
+	return is_string( $error ) && '' !== $error ? $error : 'unknown OpenSSL error';
 }

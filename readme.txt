@@ -4,7 +4,7 @@ Tags: woocommerce, coinbase, usdc, usdt, bitcoin, ethereum, dogecoin, crypto, pa
 Requires at least: 6.0
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 1.0.3
+Stable tag: 1.0.4
 License: AEGIS Source-Available License
 License URI: https://github.com/GambitMutant/aegis-coinbase-for-woocommerce/blob/main/LICENSE
 Author: Gambit Mutant
@@ -53,7 +53,7 @@ Donations support The AEGIS Alliance’s project funding, with a secondary purpo
 Tested and written to avoid common conflicts with popular WooCommerce extensions and themes (Elementor, Astra, GeneratePress, Storefront, Kadence, Divi, Flatsome, Woodmart, and most standard payment/shipping plugins). Uses unique prefixes, standard WooCommerce hooks, HPOS and Checkout Blocks declarations, and late loading.
 
 **Requirements**
-* PHP 7.4+ (works on 8.0–8.4+; sodium extension required for Personal mode)
+* PHP 7.4 or newer, and compatible with PHP 8.0, 8.1, 8.2, 8.3, 8.4, and 8.5. The sodium extension is required for Personal mode. The October 21, 2026 PHP flaws (CVE-2026-109618 and CVE-2026-109619) are in PHP itself. Run PHP 8.2.35, 8.3.36, 8.4.27, or 8.5.12 or newer. PHP 8.4.26 and older 8.4 releases are not safe. Updating this plugin does not patch PHP.
 * WordPress 6.0+ (tested up to current 6.9 / 7.x series)
 * WooCommerce 8.0+ (tested through 12.1+)
 * CDP API keys with appropriate scopes
@@ -70,6 +70,11 @@ Tested and written to avoid common conflicts with popular WooCommerce extensions
 6. Save.
 
 == Changelog ==
+
+= 1.0.4 =
+* Confirmed compatibility with PHP 8.0 through 8.5.
+* wp-admin now warns when PHP is older than 8.2.35, 8.3.36, 8.4.27, or 8.5.12, the releases that fix CVE-2026-109618 and CVE-2026-109619. Those flaws are in PHP, not in this plugin.
+* Avoided a PHP 8.1 deprecation when OpenSSL or JSON returns false.
 
 = 1.0.3 =
 * Added the AEGIS Source-Available License as LICENSE. TERMS.md is the same license.
